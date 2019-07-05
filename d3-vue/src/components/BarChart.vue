@@ -12,6 +12,14 @@
           :width="xScale.bandwidth()"
           :height="0"
         ></rect>
+        <text
+          v-for="item in data"
+          :key="item[xKey].amount"
+          :x="xScale(item[xKey]) + 30"
+          :y="yScale(item[yKey]) - 2"
+          fill="red"
+        >{{ item[xKey]}} {{ item[yKey]}}
+        </text>
       </g>
     </svg>
   </div>
@@ -55,6 +63,9 @@ export default {
         .attr("height", d => {
           return this.svgHeight - this.yScale(d[this.yKey]);
         });
+      selectAll("text")
+        .data(this.data)
+        .enter()
     },
     AddResizeListener() {
       // redraw the chart 300ms after the window has been resized
@@ -93,10 +104,10 @@ export default {
     yScale() {
       return scaleLinear()
         .rangeRound([this.svgHeight, 0])
-        .domain([this.dataMin > 0 ? 0 : this.dataMin, this.dataMax]);
+        .domain([this.dataMin > 0 ? 0 : this.dataMin + 2, this.dataMax + 2]);
     },
     svgHeight() {
-      return this.svgWidth / 1.61803398875; // golden ratio
+      return this.svgWidth / 1.61803398875; // 黄金比例
     }
   }
 };

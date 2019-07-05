@@ -15,19 +15,19 @@ export default {
   data: () => ({
     barChartData: [
       {
-        name: "Roses",
+        name: "张三",
         amount: 25
       },
       {
-        name: "Tulips",
+        name: "李四",
         amount: 40
       },
       {
-        name: "Daisies",
+        name: "老王",
         amount: 15
       },
       {
-        name: "Narcissuses",
+        name: "老赖",
         amount: 9
       }
     ]
